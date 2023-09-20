@@ -1,15 +1,15 @@
-import BoxHeader from "@/components/BoxHeader";
-import DashboardBox from "@/components/DashboardBox";
-import FlexBetween from "@/components/FlexBetween";
+import BoxHeader from '@/components/BoxHeader';
+import DashboardBox from '@/components/DashboardBox';
+import FlexBetween from '@/components/FlexBetween';
 import {
   useGetKpisQuery,
   useGetProductsQuery,
   useGetTransactionsQuery,
-} from "@/state/api";
-import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid, GridCellParams } from "@mui/x-data-grid";
-import React, { useMemo } from "react";
-import { Cell, Pie, PieChart } from "recharts";
+} from '@/state/api';
+import { Box, Typography, useTheme } from '@mui/material';
+import { DataGrid, GridCellParams } from '@mui/x-data-grid';
+import { useMemo } from 'react';
+import { Cell, Pie, PieChart } from 'recharts';
 
 const Row3 = () => {
   const { palette } = useTheme();
@@ -41,19 +41,19 @@ const Row3 = () => {
 
   const productColumns = [
     {
-      field: "_id",
-      headerName: "id",
+      field: '_id',
+      headerName: 'id',
       flex: 1,
     },
     {
-      field: "expense",
-      headerName: "Expense",
+      field: 'expense',
+      headerName: 'Expense',
       flex: 0.5,
       renderCell: (params: GridCellParams) => `$${params.value}`,
     },
     {
-      field: "price",
-      headerName: "Price",
+      field: 'price',
+      headerName: 'Price',
       flex: 0.5,
       renderCell: (params: GridCellParams) => `$${params.value}`,
     },
@@ -61,24 +61,24 @@ const Row3 = () => {
 
   const transactionColumns = [
     {
-      field: "_id",
-      headerName: "id",
+      field: '_id',
+      headerName: 'id',
       flex: 1,
     },
     {
-      field: "buyer",
-      headerName: "Buyer",
+      field: 'buyer',
+      headerName: '买家',
       flex: 0.67,
     },
     {
-      field: "amount",
-      headerName: "Amount",
+      field: 'amount',
+      headerName: '数量',
       flex: 0.35,
       renderCell: (params: GridCellParams) => `$${params.value}`,
     },
     {
-      field: "productIds",
-      headerName: "Count",
+      field: 'productIds',
+      headerName: '次数',
       flex: 0.1,
       renderCell: (params: GridCellParams) =>
         (params.value as Array<string>).length,
@@ -87,31 +87,27 @@ const Row3 = () => {
 
   return (
     <>
-      <DashboardBox gridArea="g">
-        <BoxHeader
-          title="List of Products"
-          sideText={`${productData?.length} products`}
-        />
+      <DashboardBox gridArea='g'>
+        <BoxHeader title='产品概览' sideText={`${productData?.length} 产品`} />
         <Box
-          mt="0.5rem"
-          p="0 0.5rem"
-          height="75%"
+          mt='0.5rem'
+          p='0 0.5rem'
+          height='75%'
           sx={{
-            "& .MuiDataGrid-root": {
+            '& .MuiDataGrid-root': {
               color: palette.grey[300],
-              border: "none",
+              border: 'none',
             },
-            "& .MuiDataGrid-cell": {
+            '& .MuiDataGrid-cell': {
               borderBottom: `1px solid ${palette.grey[800]} !important`,
             },
-            "& .MuiDataGrid-columnHeaders": {
+            '& .MuiDataGrid-columnHeaders': {
               borderBottom: `1px solid ${palette.grey[800]} !important`,
             },
-            "& .MuiDataGrid-columnSeparator": {
-              visibility: "hidden",
+            '& .MuiDataGrid-columnSeparator': {
+              visibility: 'hidden',
             },
-          }}
-        >
+          }}>
           <DataGrid
             columnHeaderHeight={25}
             rowHeight={35}
@@ -121,31 +117,30 @@ const Row3 = () => {
           />
         </Box>
       </DashboardBox>
-      <DashboardBox gridArea="h">
+      <DashboardBox gridArea='h'>
         <BoxHeader
-          title="Recent Orders"
-          sideText={`${transactionData?.length} latest transactions`}
+          title='近期订单'
+          sideText={`${transactionData?.length} 最新交易`}
         />
         <Box
-          mt="1rem"
-          p="0 0.5rem"
-          height="80%"
+          mt='1rem'
+          p='0 0.5rem'
+          height='80%'
           sx={{
-            "& .MuiDataGrid-root": {
+            '& .MuiDataGrid-root': {
               color: palette.grey[300],
-              border: "none",
+              border: 'none',
             },
-            "& .MuiDataGrid-cell": {
+            '& .MuiDataGrid-cell': {
               borderBottom: `1px solid ${palette.grey[800]} !important`,
             },
-            "& .MuiDataGrid-columnHeaders": {
+            '& .MuiDataGrid-columnHeaders': {
               borderBottom: `1px solid ${palette.grey[800]} !important`,
             },
-            "& .MuiDataGrid-columnSeparator": {
-              visibility: "hidden",
+            '& .MuiDataGrid-columnSeparator': {
+              visibility: 'hidden',
             },
-          }}
-        >
+          }}>
           <DataGrid
             columnHeaderHeight={25}
             rowHeight={35}
@@ -155,53 +150,49 @@ const Row3 = () => {
           />
         </Box>
       </DashboardBox>
-      <DashboardBox gridArea="i">
-        <BoxHeader title="Expense Breakdown By Category" sideText="+4%" />
-        <FlexBetween mt="0.5rem" gap="0.5rem" p="0 1rem" textAlign="center">
+      <DashboardBox gridArea='i'>
+        <BoxHeader title='按类别划分的费用明细' sideText='+4%' />
+        <FlexBetween mt='0.5rem' gap='0.5rem' p='0 1rem' textAlign='center'>
           {pieChartData?.map((data, i) => (
             <Box key={`${data[0].name}-${i}`}>
               <PieChart width={110} height={100}>
                 <Pie
-                  stroke="none"
+                  stroke='none'
                   data={data}
                   innerRadius={18}
                   outerRadius={35}
                   paddingAngle={2}
-                  dataKey="value"
-                >
+                  dataKey='value'>
                   {data.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={pieColors[index]} />
                   ))}
                 </Pie>
               </PieChart>
-              <Typography variant="h5">{data[0].name}</Typography>
+              <Typography variant='h5'>{data[0].name}</Typography>
             </Box>
           ))}
         </FlexBetween>
       </DashboardBox>
-      <DashboardBox gridArea="j">
-        <BoxHeader
-          title="Overall Summary and Explanation Data"
-          sideText="+15%"
-        />
+      <DashboardBox gridArea='j'>
+        <BoxHeader title='总体概述和数据解释' sideText='+15%' />
         <Box
-          height="15px"
-          margin="1.25rem 1rem 0.4rem 1rem"
+          height='15px'
+          margin='1.25rem 1rem 0.4rem 1rem'
           bgcolor={palette.primary[800]}
-          borderRadius="1rem"
-        >
+          borderRadius='1rem'>
           <Box
-            height="15px"
+            height='15px'
             bgcolor={palette.primary[600]}
-            borderRadius="1rem"
-            width="40%"
-          ></Box>
+            borderRadius='1rem'
+            width='40%'></Box>
         </Box>
-        <Typography margin="0 1rem" variant="h6">
-          Orci aliquam enim vel diam. Venenatis euismod id donec mus lorem etiam
-          ullamcorper odio sed. Ipsum non sed gravida etiam urna egestas
-          molestie volutpat et. Malesuada quis pretium aliquet lacinia ornare
-          sed. In volutpat nullam at est id cum pulvinar nunc.
+        <Typography margin='0 1rem' variant='h6'>
+          After massive project practice and summaries, Ant Design, a design
+          language for background applications, is refined by Ant UED Team,
+          which aims to uniform the user interface specs for internal background
+          projects, lower the unnecessary cost of design differences and
+          implementation and liberate the resources of design and front-end
+          development.
         </Typography>
       </DashboardBox>
     </>
