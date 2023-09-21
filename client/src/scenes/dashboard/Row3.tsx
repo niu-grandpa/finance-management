@@ -187,12 +187,7 @@ const Row3 = () => {
             width='40%'></Box>
         </Box>
         <Typography margin='0 1rem' variant='h6'>
-          After massive project practice and summaries, Ant Design, a design
-          language for background applications, is refined by Ant UED Team,
-          which aims to uniform the user interface specs for internal background
-          projects, lower the unnecessary cost of design differences and
-          implementation and liberate the resources of design and front-end
-          development.
+          这是一段总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释总体概述和数据解释
         </Typography>
       </DashboardBox>
     </>
