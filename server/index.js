@@ -30,18 +30,22 @@ app.use('/product', productRoutes);
 app.use('/transaction', transactionRoutes);
 
 /* MONGOOSE SETUP */
+const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
 const PORT = process.env.PORT || 9000;
 const URI =
-  process.env === 'production'
+  process.env.NODE_ENV === 'production'
     ? process.env.MONGO_URL_PRO
     : process.env.MONGO_URL_DEV;
+
 mongoose
   .connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(async () => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+    app.listen(PORT, HOST, () =>
+      console.log(`Server is running on http://${HOST}:${PORT}`)
+    );
 
     /*在初始化数据的时候再取消注释  */
     // await mongoose.connection.db.dropDatabase();
